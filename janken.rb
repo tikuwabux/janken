@@ -10,8 +10,14 @@ def janken
   select_number = Integer(gets.chomp!)
   player_choice = choices[select_number]
   
-  cp_choice = choices[rand(3)]
+  #cp_choice = choices[rand(3)]
+  #動作チェックのため、cp_choiceを固定する
+  cp_choice = "グー"
   
+  # player_choiceとcp_choiceを出力してみる
+      p player_choice
+      p cp_choice
+      
   #player_choiceがwhenの右の値の時だけ、処理を実行する
   case player_choice
   when "戦わない"
@@ -20,7 +26,7 @@ def janken
     puts "-----------------------------------"
     
     return "abstention"
-  
+  #if player_choice == "グー" || "チョキ" || "パー"
   when "グー", "チョキ", "パー"
     puts "あなたは#{player_choice}を出しました"
     puts "cpは#{cp_choice}を出しました"
@@ -28,15 +34,19 @@ def janken
       puts "--------"
       puts "あいこで"
       puts "--------"
+      
+      
+      
       # このメソッド内の情報を、このメソッド外の分岐条件に使用したいため、returnメソッドを用いて、呼び出し元に情報を返す
       return "aiko"
-      
-  　elsif (player_choice == "グー" && cp_choice == "チョキ") || (player_choice == "チョキ" && cp_choice == "パー") || (player_choice == "パー" && cp_choice == "グー") 
+    #elsifの分岐が機能しなくなってしまうエラー→文頭に全角スペースがついてるだけだった。削除したら動いた 
+    #elsif (player_choice == "グー" && cp_choice == "チョキ")
+    elsif (player_choice == "グー" && cp_choice == "チョキ") || (player_choice == "チョキ" && cp_choice == "パー") || (player_choice == "パー" && cp_choice == "グー") 
       puts "----------------------------------------------------------"
       puts "じゃんけんは、あなたの勝ちです"
       puts "あっちむいてほいにうつります。勝者のあなたは指を差す側です"
       puts "----------------------------------------------------------"
-      return "palyer_win"
+      return "player_win"
     else
       puts "--------------------------------------------------------------"
       puts "じゃんけんは、あなたの負けです"
@@ -63,6 +73,9 @@ while janken_result == "aiko" do
   janken_result = janken
 end
 
+# janken_resultを出力してみる
+p janken_result
+
 # atti-muite_hoiメソッドを定義する。
 # 引数名はなんでもよい。今回は渡された引数の名前に合わせ、janken_resultとした。
 def atti_muite_hoi(janken_result)
@@ -77,7 +90,14 @@ def atti_muite_hoi(janken_result)
 
   player_choice = choices[select_number]
   
-  cp_choice = choices[rand(3)]
+  #cp_choice = choices[rand(3)]
+  #動作チェックのため、cp_choiceを固定する
+  cp_choice = "上"
+  
+  # choiceを出力してみる
+  p player_choice
+  p cp_choice
+  p janken_result
   
   #player_choiceがwhenの右の値の時だけ、処理を実行する
   case player_choice
@@ -87,7 +107,7 @@ def atti_muite_hoi(janken_result)
       puts "あなたは#{player_choice}を指差しました"
       puts "cpは#{cp_choice}を向きました"
       
-        if player_choice == cp_chice
+        if player_choice == cp_choice
           puts "----------------------------------"
           puts "あなたの勝ちです"
           puts "さすがです！おめでとうございます！"
@@ -135,9 +155,12 @@ end
 # じゃんけんの勝敗が決まった時のみ、atti_muite_hoiメソッドを呼び出し、返り値を、変数atti_muite_hoi_result に格納する。
 # また、このメソッド外の情報をこのメソッド内の分岐条件に使用したいため、引数を渡す。
 # 尚、今回はじゃんけんの勝敗情報（メソッド外の情報）が格納されている、ローカル変数janken_resultを引数に渡す。
-if (janken_result == "palyer_win") || (janken_result == "player_lose")
+if (janken_result == "player_win") || (janken_result == "player_lose")
   atti_muite_hoi_result = atti_muite_hoi(janken_result)
 end
+
+# atti_muite_hoi_resultを出力してみる
+p atti_muite_hoi_result
 
 # 「あっちむいてほいの結果が、引き分けになったとき、じゃんけん〜あっちむいてほいの結果を変数に格納するとこまで、やり直し」
 # という操作を繰り返す。つまり、あっちむいてほいの結果が引き分け以外になるまで、延々とじゃんけんからやり直し。
@@ -154,9 +177,22 @@ while atti_muite_hoi_result == "drow" do
   janken_result = janken
   while janken_result == "aiko" do
     janken_result = janken
+    
+    # janken_resultを出力してみる
+    p janken_result
   end
-  if (janken_result == "palyer_win") || (janken_result == "player_lose")
+  
+  # janken_resultを出力してみる
+    p janken_result
+    
+  if (janken_result == "player_win") || (janken_result == "player_lose")
+ 
     atti_muite_hoi_result = atti_muite_hoi(janken_result)
+    
+   
+    
+    # atti_muite_hoi_resultを出力してみる
+    p atti_muite_hoi_result
   end
   # やり直し部分の処理終了
 end
