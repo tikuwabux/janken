@@ -12,10 +12,6 @@ def janken
   
   cp_choice = choices[rand(3)]
   
-  # player_choiceとcp_choiceを出力してみる
-      p player_choice
-      p cp_choice
-      
   #player_choiceがwhenの右の値の時だけ、処理を実行する
   case player_choice
   when "戦わない"
@@ -69,9 +65,6 @@ while janken_result == "aiko" do
   janken_result = janken
 end
 
-# janken_resultを出力してみる
-p janken_result
-
 # atti-muite_hoiメソッドを定義する。
 # 引数名はなんでもよい。今回は渡された引数の名前に合わせ、janken_resultとした。
 def atti_muite_hoi(janken_result)
@@ -87,11 +80,6 @@ def atti_muite_hoi(janken_result)
   player_choice = choices[select_number]
   
   cp_choice = choices[rand(3)]
-  
-  # choiceを出力してみる
-  p player_choice
-  p cp_choice
-  p janken_result
   
   #player_choiceがwhenの右の値の時だけ、処理を実行する
   case player_choice
@@ -153,9 +141,6 @@ if (janken_result == "player_win") || (janken_result == "player_lose")
   atti_muite_hoi_result = atti_muite_hoi(janken_result)
 end
 
-# atti_muite_hoi_resultを出力してみる
-p atti_muite_hoi_result
-
 # 「あっちむいてほいの結果が、引き分けになったとき、じゃんけん〜あっちむいてほいの結果を変数に格納するとこまで、やり直し」
 # という操作を繰り返す。つまり、あっちむいてほいの結果が引き分け以外になるまで、延々とじゃんけんからやり直し。
 
@@ -171,22 +156,12 @@ while atti_muite_hoi_result == "drow" do
   janken_result = janken
   while janken_result == "aiko" do
     janken_result = janken
-    
-    # janken_resultを出力してみる
-    p janken_result
   end
   
-  # janken_resultを出力してみる
-    p janken_result
-    
   if (janken_result == "player_win") || (janken_result == "player_lose")
  
     atti_muite_hoi_result = atti_muite_hoi(janken_result)
-    
-   
-    
-    # atti_muite_hoi_resultを出力してみる
-    p atti_muite_hoi_result
+
   end
   # やり直し部分の処理終了
 end
