@@ -10,9 +10,7 @@ def janken
   select_number = Integer(gets.chomp!)
   player_choice = choices[select_number]
   
-  #cp_choice = choices[rand(3)]
-  #動作チェックのため、cp_choiceを固定する
-  cp_choice = "グー"
+  cp_choice = choices[rand(3)]
   
   # player_choiceとcp_choiceを出力してみる
       p player_choice
@@ -90,9 +88,7 @@ def atti_muite_hoi(janken_result)
 
   player_choice = choices[select_number]
   
-  #cp_choice = choices[rand(3)]
-  #動作チェックのため、cp_choiceを固定する
-  cp_choice = "上"
+  cp_choice = choices[rand(3)]
   
   # choiceを出力してみる
   p player_choice
