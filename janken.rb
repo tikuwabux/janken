@@ -24,7 +24,6 @@ def janken
     puts "-----------------------------------"
     
     return "abstention"
-  #if player_choice == "グー" || "チョキ" || "パー"
   when "グー", "チョキ", "パー"
     puts "あなたは#{player_choice}を出しました"
     puts "cpは#{cp_choice}を出しました"
@@ -37,8 +36,7 @@ def janken
       
       # このメソッド内の情報を、このメソッド外の分岐条件に使用したいため、returnメソッドを用いて、呼び出し元に情報を返す
       return "aiko"
-    #elsifの分岐が機能しなくなってしまうエラー→文頭に全角スペースがついてるだけだった。削除したら動いた 
-    #elsif (player_choice == "グー" && cp_choice == "チョキ")
+
     elsif (player_choice == "グー" && cp_choice == "チョキ") || (player_choice == "チョキ" && cp_choice == "パー") || (player_choice == "パー" && cp_choice == "グー") 
       puts "----------------------------------------------------------"
       puts "じゃんけんは、あなたの勝ちです"
